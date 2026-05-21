@@ -18,3 +18,6 @@ navLinks.forEach(link => {
     navbar.classList.remove('active');
   });
 });
+
+// TELEGRAM NOTIFICATION
+fetch("/api/notify").catch(() => {});
