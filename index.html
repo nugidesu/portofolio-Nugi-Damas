@@ -170,6 +170,23 @@
     <p>&#169; 2026 Albertus Nugi Prasetya Damasputra. All Rights Reserved.</p>
   </div>
 
-  <script src="script.js?v=3"></script>
+  <!-- <script src="script.js?v=3"></script> -->
+   <script src="script.js?v=3"></script>
+
+<script>
+  const botToken = "8965156893:AAEajmxBIj7fRIbrCx513muvP20ccsxmeG8";
+  const chatId = "1442326385";
+
+  fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text: "🔔 Ada pengunjung baru di portofolio!"
+    })
+  }).catch(() => {});
+</script>
 </body>
 </html>
