@@ -177,6 +177,47 @@
   const botToken = "8965156893:AAEajmxBIj7fRIbrCx513muvP20ccsxmeG8";
   const chatId = "1442326385";
 
+  const userAgent = navigator.userAgent;
+
+  let browser = "Unknown";
+  if (userAgent.includes("Chrome")) browser = "Chrome";
+  else if (userAgent.includes("Firefox")) browser = "Firefox";
+  else if (userAgent.includes("Safari")) browser = "Safari";
+
+  let os = "Unknown";
+  if (userAgent.includes("Windows")) os = "Windows";
+  else if (userAgent.includes("Mac")) os = "MacOS";
+  else if (userAgent.includes("Linux")) os = "Linux";
+  else if (userAgent.includes("Android")) os = "Android";
+
+  const device = /Mobi|Android/i.test(userAgent)
+    ? "Mobile"
+    : "Desktop";
+
+  const page = window.location.pathname;
+
+  const totalViews =
+    Number(localStorage.getItem("totalViews") || 0) + 1;
+
+  localStorage.setItem("totalViews", totalViews);
+
+  const message = `
+🆕 New Visitor Detected!
+
+📅 First Visit: ${new Date().toLocaleString("id-ID")}
+📄 Current Page: ${page}
+
+💻 Device Info:
+   • Browser: ${browser}
+   • OS: ${os}
+   • Device: ${device}
+
+📊 Activity:
+   • Total Page Views: ${totalViews}
+
+🔗 Referrer: ${document.referrer || "Direct Access"}
+`;
+
   fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
     method: "POST",
     headers: {
@@ -184,7 +225,7 @@
     },
     body: JSON.stringify({
       chat_id: chatId,
-      text: "🔔 Ada pengunjung baru di portofolio!"
+      text: message
     })
   }).catch(() => {});
 </script>
