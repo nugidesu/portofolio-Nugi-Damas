@@ -174,8 +174,8 @@
    <script src="script.js?v=3"></script>
 
 <script>
-  const botToken = "8965156893:AAEajmxBIj7fRIbrCx513muvP20ccsxmeG8";
-  const chatId = "1442326385";
+  const botToken = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
 
   const userAgent = navigator.userAgent;
 
